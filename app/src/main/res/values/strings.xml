@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Proyect</string>
+    <string-array name="companias">
+        <item>ENDE</item>
+        <item>ELFEC-COCHABAMBA</item>
+        <item>EMDEECRUZ S.A.-SANTA CRUZ</item>
+        <item>CRE Ltda-SANTA CRUZ</item>
+        <item>DELAPAZ-LA PAZ</item>
+        <item>COOPARACA-LA PAZ</item>
+        <item>SEYSA-LA PAZ</item>
+        <item>CESSA-SUCRE</item>
+        <item>COSERMO-SUCRE</item>
+        <item>SETAR-TARIJA</item>
+        <item>ENDE DE ORURO S.A-ORURO</item>
+        <item>CERVI-ORURO</item>
+        <item>COOPSEL-ORURO</item>
+        <item>COSEP-ORURO</item>
+        <item>SEPSA-POTOSI</item>
+        <item>COSEAL-POTOSI</item>
+        <item>COOPELECT-POOSI</item>
+        <item>ENDE DEL BENI SAM-BENI</item>
+        <item>COOPERCAR-BENI</item>
+        <item>CER-BENI</item>
+    </string-array>
 </resources>
