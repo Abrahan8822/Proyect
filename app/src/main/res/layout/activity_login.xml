@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".LoginActivity">
+
+
+    <EditText
+        android:id="@+id/etlCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Correo"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/etlpass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Password"
+        android:minHeight="48dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/azulMarino"
+            android:text="INICIAR SESION"
+            android:textColor="@color/white" />
+        <Button
+            android:id="@+id/btnSentToReset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/amarilloClaro"
+            android:text="OLVIDE MI CONTRASEÑA"
+            android:textColor="@color/azulPetroleo"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+</LinearLayout>

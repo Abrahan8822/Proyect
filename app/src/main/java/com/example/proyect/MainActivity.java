@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Spinner mEtcompani;
     private EditText mEtprecio;
     private Button mbtnRegister;
+    private Button mbtnsendToLogin;
     //variable de los datos a registar
     private String nombre="";
     private String correo="";
@@ -50,9 +52,10 @@ public class MainActivity extends AppCompatActivity {
         mEtcompani=findViewById(R.id.spinnerCompani);
         mEtprecio=findViewById(R.id.etPrecio);
         mbtnRegister=findViewById(R.id.btnregister);
+        mbtnsendToLogin=findViewById(R.id.btnlsentTologin);
         mdataBase= FirebaseDatabase.getInstance().getReference();
 
-        mbtnRegister.setOnClickListener(new View.OnClickListener() {
+        mbtnRegister.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 nombre=mEtnombre.getText().toString();
@@ -77,11 +80,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        mbtnRegister.setOnClickListener(new View.OnClickListener() {
+        mbtnsendToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(MainActivity.this,LoginActivity.class));
-                //finish(); el usuario tiene que poder regresar a esta activity
+                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                //se podria usar finish() pero el usuario debe poder regresar ala activity anterior si lo desea
             }
         });
     }
@@ -104,7 +107,12 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<Void> task2) {
                             if(task2.isSuccessful())
                             {
-
+                                startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                                finish();
+                            }
+                            else
+                            {
+                                Toast.makeText(MainActivity.this, "No se pudieron crear los datos correctamente", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -114,5 +122,15 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(mAth.getCurrentUser()!=null)
+        {
+            startActivity(new Intent(MainActivity.this,HomeActivity.class));
+            finish();
+        }
     }
 }
