@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
+    android:background="@color/plomoClaro"
     tools:context=".LoginActivity">
 
 
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="Password"
+        android:inputType="textPassword"
         android:minHeight="48dp" />
 
     <LinearLayout

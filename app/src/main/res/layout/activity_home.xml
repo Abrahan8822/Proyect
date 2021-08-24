@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/plomoClaro"
     tools:context=".MainActivity">
   <FrameLayout
       android:layout_width="match_parent"
@@ -20,6 +21,6 @@
       app:mbn_selectedIconColor="@color/amarilloClaro"
       app:mbn_countTextColor="@color/mostazaOscuro"
       app:mbn_countBackgroundColor="#ff6f00"
-      app:mbn_defaultIconColor="@color/white"
+      app:mbn_defaultIconColor="@color/mostazaOscuro"
       app:mbn_backgroundBottomColor="@color/azulPetroleo"/>
 </LinearLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvlvNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Titulo"
+                    android:textSize="17sp"/>
+                <TextView
+                    android:id="@+id/tvlvCorreo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Contenido"
+                    android:layout_marginTop="20dp"
+                    android:textSize="17sp"/>
+                <TextView
+                    android:id="@+id/tvlvCompani"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fecha"
+                    android:layout_marginTop="20dp"
+                    android:textSize="17sp"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/azul"
+                    android:layout_marginTop="20dp"/>
+
+</LinearLayout>

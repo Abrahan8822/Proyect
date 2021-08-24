@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proyect">
         <activity
+            android:name=".AddDeviceActivity"
+            android:exported="true" />
+        <activity
             android:name=".ResetPasswordActivity"
             android:exported="true" />
         <activity

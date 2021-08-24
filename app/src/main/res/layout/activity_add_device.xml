@@ -5,58 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
-    android:background="@color/plomoClaro"
-    tools:context=".MainActivity">
+    tools:context=".AddDeviceActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/azulPetroleo"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imggtnback"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/azulPetroleo"
+            android:clickable="true"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="Atras"
+            android:textColor="@color/white"
+            android:textSize="24dp" />
+    </LinearLayout>
+
 
     <EditText
-        android:id="@+id/etNombre"
+        android:id="@+id/etaddNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="Nombre"
         android:minHeight="48dp" />
-
     <EditText
-        android:id="@+id/etCorreo"
+        android:id="@+id/etaddsn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="Correo"
+        android:hint="S/N Numero de serie"
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/etpass"
+        android:id="@+id/etAddpass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="Password"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
         android:minHeight="48dp" />
-    <Spinner
-        android:id="@+id/spinnerCompani"
+
+    <EditText
+        android:id="@+id/etaddpass2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawSelectorOnTop="true"
-        android:entries="@array/companias"
-        android:padding="20dp"
         android:layout_marginTop="20dp"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        >
-        <EditText
-            android:id="@+id/etPrecio"
-            android:layout_width="100dp"
-            android:layout_height="80dp"
-            android:text="0.822"/>
-
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@color/amarilloClaro"
-            android:text="Cambiar precio" />
-    </LinearLayout>
+        android:hint="Repetir contraseña"
+        android:inputType="textPassword"
+        android:minHeight="48dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,20 +73,14 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btnregister"
+            android:id="@+id/btnAddregister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/azulMarino"
-            android:text="REGISTRAR USUARIO"
+            android:text="REGISTRAR EQUIPO"
             android:textColor="@color/white" />
-        <Button
-            android:id="@+id/btnlsentTologin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/amarilloClaro"
-            android:text="YA TENGO UNA CUENTA"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/black" />
+
     </LinearLayout>
+
 
 </LinearLayout>
