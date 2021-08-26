@@ -24,7 +24,7 @@ public class HomeFragment extends Fragment {
     private FirebaseDatabase mdataBase;
     private DatabaseReference mdataRef;
     private TextView mtvValue;
-
+    private FirebaseAuth mAuth ;
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -33,10 +33,12 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_home, container, false);
         mdataBase=FirebaseDatabase.getInstance();
+        mAuth=FirebaseAuth.getInstance();
+        String uidUsuario=mAuth.getCurrentUser().getUid();
         mdataRef=mdataBase.getReference("Devices/4F6SyZD9/corriente");
+        //mdataRef=mdataBase.getReference("Devices/4F6SyZD9/corriente");
         mtvValue=v.findViewById(R.id.tvfhValue);
         mdataRef.addValueEventListener(new ValueEventListener() {
             @Override

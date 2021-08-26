@@ -17,13 +17,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.sql.Timestamp;
+
 public class AddDeviceActivity extends AppCompatActivity {
     private ImageButton mbtnBack;
     private Button mbtnAdd;
     //Datos para agregar dispositivos
     private EditText mNserie,mNombre,mPassd,mPassdR;
     //datos para guardar en firebase
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth ;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseRef;
 
@@ -83,10 +85,6 @@ public class AddDeviceActivity extends AppCompatActivity {
             }
         });
     }
-
-    /*private void IniciarFirease() {
-        //FirebaseApp.initializeApp(this);
-    }*/
 
     private void LimpiarCajas() {
         mNserie.setText("");

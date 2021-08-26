@@ -1,5 +1,7 @@
 package com.example.proyect;
 
+import java.sql.Timestamp;
+
 public class Devices {
     private String nSerie;
     private String nombre;
@@ -7,6 +9,25 @@ public class Devices {
     private String pass;
     private int estado=1;
     private double corriente=0;
+
+    public Timestamp getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Timestamp fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public Timestamp getFechaAct() {
+        return fechaAct;
+    }
+
+    public void setFechaAct(Timestamp fechaAct) {
+        this.fechaAct = fechaAct;
+    }
+
+    private Timestamp fechaRegistro;
+    private Timestamp fechaAct;
 
     public String getnSerie() {
         return nSerie;
