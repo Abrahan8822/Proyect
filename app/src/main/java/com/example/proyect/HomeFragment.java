@@ -17,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 
@@ -25,6 +26,7 @@ public class HomeFragment extends Fragment {
     private DatabaseReference mdataRef;
     private TextView mtvValue;
     private FirebaseAuth mAuth ;
+    String uidNSerie="4F6SyZD9";
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -37,8 +39,8 @@ public class HomeFragment extends Fragment {
         mdataBase=FirebaseDatabase.getInstance();
         mAuth=FirebaseAuth.getInstance();
         String uidUsuario=mAuth.getCurrentUser().getUid();
-        mdataRef=mdataBase.getReference("Devices/4F6SyZD9/corriente");
-        //mdataRef=mdataBase.getReference("Devices/4F6SyZD9/corriente");
+        mdataRef=mdataBase.getReference("Devices/"+uidNSerie+"/corriente");
+
         mtvValue=v.findViewById(R.id.tvfhValue);
         mdataRef.addValueEventListener(new ValueEventListener() {
             @Override

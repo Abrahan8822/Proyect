@@ -11,14 +11,14 @@
                     android:text="Titulo"
                     android:textSize="17sp"/>
                 <TextView
-                    android:id="@+id/tvlvCorreo"
+                    android:id="@+id/tvlvnSerie"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Contenido"
                     android:layout_marginTop="20dp"
                     android:textSize="17sp"/>
                 <TextView
-                    android:id="@+id/tvlvCompani"
+                    android:id="@+id/tvlvuidUsuario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Fecha"

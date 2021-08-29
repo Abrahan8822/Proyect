@@ -16,6 +16,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 import java.sql.Timestamp;
 
@@ -28,6 +29,8 @@ public class AddDeviceActivity extends AppCompatActivity {
     private FirebaseAuth mAuth ;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mDatabaseRef;
+    //recuperando datos generales del constructor
+    Devices d1=new Devices();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,8 @@ public class AddDeviceActivity extends AppCompatActivity {
                 String nSerie=mNserie.getText().toString();
                 String uidUsuario=mAuth.getCurrentUser().getUid();
                 String nombre=mNombre.getText().toString();
+                int estado=d1.getEstado();
+                double corriente=d1.getCorriente();
                 String pass1=mPassd.getText().toString();
                 String passs2=mPassdR.getText().toString();
                 if(nSerie.equals("")||nombre.equals("")||pass1.equals("")||!passs2.equals(pass1))
@@ -71,13 +76,7 @@ public class AddDeviceActivity extends AppCompatActivity {
 
                 }else
                 {
-                        Devices d=new Devices();
-                        d.setnSerie(nSerie);
-                        d.setNombre(nombre);
-                        d.setPass(pass1);
-                        d.setUidUsuario(uidUsuario);
-                        d.setCorriente(d.getCorriente());
-                        d.setEstado(d.getEstado());
+                            Devices d=new Devices(nSerie,nombre,uidUsuario,pass1,estado,corriente, ServerValue.TIMESTAMP,ServerValue.TIMESTAMP);
                         mDatabaseRef.child("Devices").child(d.getnSerie()).setValue(d);
                     Toast.makeText(AddDeviceActivity.this, "Agregado", Toast.LENGTH_SHORT).show();
                     LimpiarCajas();

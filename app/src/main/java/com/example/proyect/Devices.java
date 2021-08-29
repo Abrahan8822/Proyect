@@ -1,6 +1,7 @@
 package com.example.proyect;
 
 import java.sql.Timestamp;
+import java.util.Map;
 
 public class Devices {
     private String nSerie;
@@ -9,25 +10,55 @@ public class Devices {
     private String pass;
     private int estado=1;
     private double corriente=0;
+    private Map fechaRegistro;
+    private Map fechaAct;
 
-    public Timestamp getFechaRegistro() {
-        return fechaRegistro;
+    public Devices() {
     }
 
-    public void setFechaRegistro(Timestamp fechaRegistro) {
+    //Este constructor para get
+    public Devices(String nSerie, String nombre, String uidUsuario, String pass, int estado, double corriente) {
+        this.nSerie = nSerie;
+        this.nombre = nombre;
+        this.uidUsuario = uidUsuario;
+        this.pass = pass;
+        this.estado = estado;
+        this.corriente = corriente;
+    }
+
+    public Devices(String nSerie, String nombre, String uidUsuario) {
+        this.nSerie = nSerie;
+        this.nombre = nombre;
+        this.uidUsuario = uidUsuario;
+    }
+//Este constructor para set
+    public Devices(String nSerie, String nombre, String uidUsuario, String pass, int estado, double corriente, Map fechaRegistro, Map fechaAct) {
+        this.nSerie = nSerie;
+        this.nombre = nombre;
+        this.uidUsuario = uidUsuario;
+        this.pass = pass;
+        this.estado = estado;
+        this.corriente = corriente;
         this.fechaRegistro = fechaRegistro;
-    }
-
-    public Timestamp getFechaAct() {
-        return fechaAct;
-    }
-
-    public void setFechaAct(Timestamp fechaAct) {
         this.fechaAct = fechaAct;
     }
 
-    private Timestamp fechaRegistro;
-    private Timestamp fechaAct;
+
+    public Map getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(Map fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public Map getFechaAct() {
+        return fechaAct;
+    }
+
+    public void setFechaAct(Map fechaAct) {
+        this.fechaAct = fechaAct;
+    }
 
     public String getnSerie() {
         return nSerie;

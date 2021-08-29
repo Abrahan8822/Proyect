@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class DevicesFragment extends Fragment {
@@ -32,6 +33,7 @@ public class DevicesFragment extends Fragment {
     private FirebaseAuth mAuth;
     private String usuarioActual;
     private FloatingActionButton mbtnfloadd;
+    private TextView mtitulo;
 
     public DevicesFragment() {
         // Required empty public constructor
@@ -46,10 +48,10 @@ public class DevicesFragment extends Fragment {
         mListaDevices=mVistaLista.findViewById(R.id.rvListaDevices);
         mListaDevices.setLayoutManager(new LinearLayoutManager(getContext()));
         mbtnfloadd=mVistaLista.findViewById(R.id.floatingbtnadd);
+        mtitulo=mVistaLista.findViewById(R.id.tvfdtitulo);
         mAuth=FirebaseAuth.getInstance();
         usuarioActual=mAuth.getCurrentUser().getUid();
-        mDevicesRef= FirebaseDatabase.getInstance().getReference().child("Usuarios");
-
+        mDevicesRef= FirebaseDatabase.getInstance().getReference("Devices");
         mbtnfloadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,28 +65,36 @@ public class DevicesFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        FirebaseRecyclerOptions options= new FirebaseRecyclerOptions.Builder<Usuarios>().setQuery(mDevicesRef,Usuarios.class).build();
-        FirebaseRecyclerAdapter<Usuarios,UsuariosVista>adapter=new FirebaseRecyclerAdapter<Usuarios, UsuariosVista>(options) {
+        FirebaseRecyclerOptions options= new FirebaseRecyclerOptions.Builder<Devices>().setQuery(mDevicesRef,Devices.class).build();
+        String idUser=mAuth.getCurrentUser().getUid();
+        FirebaseRecyclerAdapter<Devices,DevicesVista>adapter=new FirebaseRecyclerAdapter<Devices, DevicesVista>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull UsuariosVista usuariosVista, int i, @NonNull Usuarios usuarios)
+            protected void onBindViewHolder(@NonNull DevicesVista devicesVista, int i, @NonNull Devices devices)
             {
-                String userId=getRef(i).getKey();
-                mDevicesRef.child(userId).addValueEventListener(new ValueEventListener() {
+                String serieId=getRef(i).getKey();
+                //Query query = myRef.child("cities").orderByChild("zone").equalTo(zona_deseada);
+                // query.addListenerForSingleValueEvent(new ValueEventListener() {
+                //mDevicesRef.child(userId).addValueEventListener(new ValueEventListener() {
+                //Query query = mDevicesRef.orderByChild("uidUsuario").equalTo(idUser);
+                //Query query = mDevicesRef.child("Devices").orderByChild("uidUsuario").equalTo(idUser);
+                //Query query = mDevicesRef.orderByChild("uidUsuario").equalTo(idUser);
+
+                mDevicesRef.child(serieId).addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
 
-                            String profileNombre=snapshot.child("nombre").getValue().toString();
-                            String profileCorreo=snapshot.child("correo").getValue().toString();
-                            String profileCompani=snapshot.child("compani").getValue().toString();
-                            usuariosVista.tvnombre.setText(profileNombre);
-                            usuariosVista.tvcorreo.setText(profileCorreo);
-                            usuariosVista.tvcompani.setText(profileCompani);
-
-
+                                String profileSerie=snapshot.child("nSerie").getValue().toString();
+                                String profileNombre=snapshot.child("nombre").getValue().toString();
+                                String profilesuario=snapshot.child("uidUsuario").getValue().toString();
+                                devicesVista.tvnSerie.setText(profileSerie);
+                                devicesVista.tvnombre.setText(profileNombre);
+                                devicesVista.tvuidUsuario.setText(profilesuario);
+                        }
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                    public void onCancelled(DatabaseError databaseError) {
 
                     }
                 });
@@ -92,23 +102,23 @@ public class DevicesFragment extends Fragment {
 
             @NonNull
             @Override
-            public UsuariosVista onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public DevicesVista onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.viewlista,parent,false);
-                UsuariosVista viewHolder=new UsuariosVista(view);
+                DevicesVista  viewHolder=new DevicesVista (view);
                 return viewHolder;
             }
         };
         mListaDevices.setAdapter(adapter);
         adapter.startListening();
     }
-    public static  class UsuariosVista extends RecyclerView.ViewHolder
+    public static  class DevicesVista extends RecyclerView.ViewHolder
     {
-        TextView tvnombre,tvcorreo,tvcompani;
-        public UsuariosVista(@NonNull View itemView) {
+        TextView tvnombre,tvnSerie,tvuidUsuario;
+        public DevicesVista (@NonNull View itemView) {
             super(itemView);
+            tvnSerie=itemView.findViewById(R.id.tvlvnSerie);
             tvnombre=itemView.findViewById(R.id.tvlvNombre);
-            tvcorreo=itemView.findViewById(R.id.tvlvCorreo);
-            tvcompani=itemView.findViewById(R.id.tvlvCompani);
+            tvuidUsuario=itemView.findViewById(R.id.tvlvuidUsuario);
         }
     }
 }
