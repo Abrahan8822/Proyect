@@ -26,10 +26,9 @@ public class Devices {
         this.corriente = corriente;
     }
 
-    public Devices(String nSerie, String nombre, String uidUsuario) {
+    public Devices(String nSerie, String nombre) {
         this.nSerie = nSerie;
         this.nombre = nombre;
-        this.uidUsuario = uidUsuario;
     }
 //Este constructor para set
     public Devices(String nSerie, String nombre, String uidUsuario, String pass, int estado, double corriente, Map fechaRegistro, Map fechaAct) {
