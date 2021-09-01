@@ -10,7 +10,19 @@
     tools:context=".HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    
+    <TextView
+        android:id="@+id/tvfhDevices"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Dispositivo"
+        android:textSize="20sp"
+        android:textAlignment="center"/>
+    <Spinner
+        android:id="@+id/spfhDevices"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"/>
+
 
     <TextView
         android:id="@+id/tvfhValue"

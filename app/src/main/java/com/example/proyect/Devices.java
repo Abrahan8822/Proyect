@@ -107,5 +107,8 @@ public class Devices {
         this.corriente = corriente;
     }
 
-
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }

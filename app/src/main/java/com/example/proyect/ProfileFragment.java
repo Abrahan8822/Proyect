@@ -88,7 +88,6 @@ public class ProfileFragment extends Fragment {
                 mAuth.signOut();
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 //para enviar datos a otra activity en el intent
-                // intent.putExtra("key",etMensaje.getText().tostring());
                 getActivity().finish();
                 startActivity(intent);
             }
