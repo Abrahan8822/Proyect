@@ -55,16 +55,15 @@ public class HomeFragment extends Fragment {
         //metodo para cargar datos
         loadDevices();
 
-        String uidUsuario=mAuth.getCurrentUser().getUid();
+
 
         return v;
     }
 
     public void loadDevices(){
-
+        String uidUsuario=mAuth.getCurrentUser().getUid();
         final List<Devices> devices=new ArrayList<>();
-
-        mdatabase.child("Devices").addListenerForSingleValueEvent(new ValueEventListener() {
+        mdatabase.child("Devices").orderByChild("uidUsuario").equalTo(uidUsuario).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists())
