@@ -4,30 +4,48 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tvlvNombre"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Titulo"
-                    android:textSize="17sp"/>
-                <TextView
-                    android:id="@+id/tvlvnSerie"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Contenido"
-                    android:layout_marginTop="20dp"
-                    android:textSize="17sp"/>
-                <TextView
-                    android:id="@+id/tvlvuidUsuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Fecha"
-                    android:layout_marginTop="20dp"
-                    android:textSize="17sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_devices"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"/>
+        
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvlvNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Titulo"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tvlvuidUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fecha"
+                android:layout_marginTop="5dp"
+                android:textSize="17sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/azul"
-                    android:layout_marginTop="20dp"/>
+                    android:layout_marginTop="10dp"/>
 
 </LinearLayout>

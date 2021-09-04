@@ -37,6 +37,7 @@ public class HomeFragment extends Fragment {
     private Spinner mspDevice;
     private ValueEventListener eventListener;
     String serieSeleccionado="";
+    int e=0;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -60,7 +61,8 @@ public class HomeFragment extends Fragment {
         return v;
     }
 
-    public void loadDevices(){
+    public void loadDevices()
+    {
         String uidUsuario=mAuth.getCurrentUser().getUid();
         final List<Devices> devices=new ArrayList<>();
         mdatabase.child("Devices").orderByChild("uidUsuario").equalTo(uidUsuario).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -79,21 +81,21 @@ public class HomeFragment extends Fragment {
                     mspDevice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                            if(i>0)
-                            {
-                                serieSeleccionado=devices.get(i).getnSerie();
-                                mtvDevice.setText("El numero de Serie es :"+serieSeleccionado);
-                                mdataRef.removeEventListener(eventListener);
-                                loadCorriente(serieSeleccionado);
-                            }else
+
+                            if(i==0&&e==0)
                             {
                                 serieSeleccionado=devices.get(i).getnSerie();
                                 mtvDevice.setText("El numero de Serie es :"+serieSeleccionado);
                                 //mdataRef.removeEventListener(eventListener);
                                 loadCorriente(serieSeleccionado);
+                            }else
+                            {
+                                serieSeleccionado=devices.get(i).getnSerie();
+                                mtvDevice.setText("El numero de Serie es :"+serieSeleccionado);
+                                mdataRef.removeEventListener(eventListener);
+                                loadCorriente(serieSeleccionado);
+                                e=e+i;
                             }
-
-
                         }
                         @Override
                         public void onNothingSelected(AdapterView<?> adapterView) {

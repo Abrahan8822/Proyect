@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -26,9 +28,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DevicesFragment extends Fragment {
     private View v;
     private FloatingActionButton mbtnfloadd;
+    private DatabaseReference mdatabase;
+    private FirebaseAuth mAuth;
 
 
     public DevicesFragment() {
@@ -52,6 +59,31 @@ public class DevicesFragment extends Fragment {
         return v;
     }
 
+
+    public void loadDevices()
+    {
+        String uidUsuario=mAuth.getCurrentUser().getUid();
+        final List<Devices> devices=new ArrayList<>();
+        mdatabase.child("Devices").orderByChild("uidUsuario").equalTo(uidUsuario).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists())
+                {
+                    for(DataSnapshot ds:snapshot.getChildren())
+                    {
+                        String uidSerie=ds.child("nSerie").getValue().toString();
+                        String nombre=ds.child("nombre").getValue().toString();
+                        devices.add(new Devices(uidSerie,nombre));
+                    }
+                    ArrayAdapter<Devices> arrayAdapter=new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line,devices);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
 
 }
