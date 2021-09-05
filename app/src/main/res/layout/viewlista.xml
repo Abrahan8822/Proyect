@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -8,15 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <ImageView
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/ic_devices"
             android:layout_marginTop="15dp"
             android:layout_marginRight="10dp"/>
-        
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="310dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -30,17 +32,27 @@
                 android:layout_marginTop="10dp"/>
 
             <TextView
-                android:id="@+id/tvlvuidUsuario"
+                android:id="@+id/tvlvNserie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Fecha"
                 android:layout_marginTop="5dp"
                 android:textSize="17sp"/>
 
+
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvlvOptions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="&#8942;"
+            android:textSize="20sp"
+            android:layout_gravity="top"
+            android:textAlignment="center"
+            tools:ignore="RtlCompat" />
+
     </LinearLayout>
-    
 
                 <View
                     android:layout_width="match_parent"

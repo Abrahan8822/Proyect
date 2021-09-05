@@ -1,4 +1,4 @@
-package com.example.proyect;
+package com.example.proyect.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,19 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.example.proyect.AddDeviceActivity;
+import com.example.proyect.R;
+import com.example.proyect.adapters.DevicesAdapter;
+import com.example.proyect.clases.Devices;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -34,10 +32,14 @@ import java.util.List;
 public class DevicesFragment extends Fragment {
     private View v;
     private FloatingActionButton mbtnfloadd;
+
+
+//pruebas recycler
+    private DevicesAdapter madapater;
+    private RecyclerView mrvDevices;
+    private ArrayList<Devices>listaDevices=new ArrayList<>();
     private DatabaseReference mdatabase;
     private FirebaseAuth mAuth;
-
-
     public DevicesFragment() {
         // Required empty public constructor
     }
@@ -49,6 +51,22 @@ public class DevicesFragment extends Fragment {
         // Inflate the layout for this fragment
         v=inflater.inflate(R.layout.fragment_devices, container, false);
         mbtnfloadd=v.findViewById(R.id.floatingbtnadd);
+        mrvDevices=v.findViewById(R.id.rvListaDevices);
+        mdatabase=FirebaseDatabase.getInstance().getReference();
+        mAuth=FirebaseAuth.getInstance();
+
+//pruebas recycler
+
+        mrvDevices=v.findViewById(R.id.rvListaDevices);
+        mrvDevices.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        llenarLista();
+
+
+
+
+
+//finpruebas
         mbtnfloadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,23 +77,22 @@ public class DevicesFragment extends Fragment {
         return v;
     }
 
-
-    public void loadDevices()
-    {
-        String uidUsuario=mAuth.getCurrentUser().getUid();
-        final List<Devices> devices=new ArrayList<>();
-        mdatabase.child("Devices").orderByChild("uidUsuario").equalTo(uidUsuario).addListenerForSingleValueEvent(new ValueEventListener() {
+   private void llenarLista() {
+       String uidUsuario=mAuth.getCurrentUser().getUid();
+        mdatabase.child("Devices").orderByChild("uidUsuario").equalTo(uidUsuario).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists())
                 {
+                    listaDevices.clear();
                     for(DataSnapshot ds:snapshot.getChildren())
                     {
-                        String uidSerie=ds.child("nSerie").getValue().toString();
+                        String nSerie=ds.child("nSerie").getValue().toString();
                         String nombre=ds.child("nombre").getValue().toString();
-                        devices.add(new Devices(uidSerie,nombre));
+                         listaDevices.add(new Devices(nSerie,nombre));
                     }
-                    ArrayAdapter<Devices> arrayAdapter=new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line,devices);
+                    madapater=new DevicesAdapter(listaDevices);
+                    mrvDevices.setAdapter(madapater);
                 }
             }
             @Override
@@ -84,6 +101,4 @@ public class DevicesFragment extends Fragment {
             }
         });
     }
-
-
 }

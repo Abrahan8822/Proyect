@@ -1,4 +1,6 @@
-package com.example.proyect;
+package com.example.proyect.clases;
+
+import android.widget.ArrayAdapter;
 
 import java.sql.Timestamp;
 import java.util.Map;
@@ -12,6 +14,16 @@ public class Devices {
     private double corriente=0;
     private Map fechaRegistro;
     private Map fechaAct;
+
+    public ArrayAdapter getListaDevices() {
+        return ListaDevices;
+    }
+
+    public void setListaDevices(ArrayAdapter listaDevices) {
+        ListaDevices = listaDevices;
+    }
+
+    private ArrayAdapter ListaDevices;
 
     public Devices() {
     }

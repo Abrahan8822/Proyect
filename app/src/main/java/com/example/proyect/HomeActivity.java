@@ -3,14 +3,14 @@ package com.example.proyect;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.proyect.fragments.DevicesFragment;
+import com.example.proyect.fragments.HomeFragment;
+import com.example.proyect.fragments.PanelFragment;
+import com.example.proyect.fragments.ProfileFragment;
 
 public class HomeActivity extends AppCompatActivity {
     //inicilizar variable

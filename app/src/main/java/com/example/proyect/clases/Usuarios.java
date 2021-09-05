@@ -1,4 +1,4 @@
-package com.example.proyect;
+package com.example.proyect.clases;
 
 public class Usuarios {
     public String nombre,correo,compani;
