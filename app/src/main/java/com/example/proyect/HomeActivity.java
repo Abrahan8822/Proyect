@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
+import com.example.proyect.clases.Devices;
 import com.example.proyect.fragments.DevicesFragment;
 import com.example.proyect.fragments.HomeFragment;
 import com.example.proyect.fragments.PanelFragment;
@@ -20,8 +21,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-
 
         //asignar variable
         bottomNavigation=findViewById(R.id.bottom_navigation);

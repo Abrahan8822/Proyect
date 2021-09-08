@@ -24,12 +24,21 @@
             android:src="@drawable/ic_back" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:text="Atras"
             android:textColor="@color/white"
             android:textSize="24dp" />
+
+        <ImageButton
+            android:id="@+id/btnAddregister"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/azulMarino"
+            android:text="REGISTRAR EQUIPO"
+            android:textColor="@color/white"
+            android:src="@drawable/ic_save" />
     </LinearLayout>
 
 
@@ -65,6 +74,14 @@
         android:hint="Repetir contraseña"
         android:inputType="textPassword"
         android:minHeight="48dp" />
+    <TextView
+        android:id="@+id/tvidNserie"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="nSerie"
+        android:textColor="@color/azulPetroleo"
+        android:textSize="24dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,12 +90,13 @@
         android:orientation="vertical">
 
         <Button
-            android:id="@+id/btnAddregister"
+            android:id="@+id/btnRemove"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/azulMarino"
-            android:text="REGISTRAR EQUIPO"
-            android:textColor="@color/white" />
+            android:background="@color/rojoExtremo"
+            android:text="Eliminar EQUIPO"
+            android:textColor="@color/white"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 

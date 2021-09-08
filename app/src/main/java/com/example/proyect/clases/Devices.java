@@ -27,7 +27,6 @@ public class Devices {
 
     public Devices() {
     }
-
     //Este constructor para get
     public Devices(String nSerie, String nombre, String uidUsuario, String pass, int estado, double corriente) {
         this.nSerie = nSerie;
@@ -37,10 +36,18 @@ public class Devices {
         this.estado = estado;
         this.corriente = corriente;
     }
-
+//contructor obtener lista
     public Devices(String nSerie, String nombre) {
         this.nSerie = nSerie;
         this.nombre = nombre;
+    }
+    //constructor update
+    public Devices(int estado,Map fechaAct,String nSerie, String nombre,String pass) {
+        this.estado = estado;
+        this.fechaAct = fechaAct;
+        this.nSerie = nSerie;
+        this.nombre = nombre;
+        this.pass = pass;
     }
 //Este constructor para set
     public Devices(String nSerie, String nombre, String uidUsuario, String pass, int estado, double corriente, Map fechaRegistro, Map fechaAct) {

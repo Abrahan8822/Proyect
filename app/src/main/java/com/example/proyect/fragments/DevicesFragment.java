@@ -24,6 +24,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class DevicesFragment extends Fragment {
     private ArrayList<Devices>listaDevices=new ArrayList<>();
     private DatabaseReference mdatabase;
     private FirebaseAuth mAuth;
+
     public DevicesFragment() {
         // Required empty public constructor
     }
@@ -79,7 +81,7 @@ public class DevicesFragment extends Fragment {
 
    private void llenarLista() {
        String uidUsuario=mAuth.getCurrentUser().getUid();
-        mdatabase.child("Devices").orderByChild("uidUsuario").equalTo(uidUsuario).addValueEventListener(new ValueEventListener() {
+       mdatabase.child("Devices").orderByChild("uidUsuario").equalTo(uidUsuario).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists())
@@ -91,7 +93,7 @@ public class DevicesFragment extends Fragment {
                         String nombre=ds.child("nombre").getValue().toString();
                          listaDevices.add(new Devices(nSerie,nombre));
                     }
-                    madapater=new DevicesAdapter(listaDevices);
+                    madapater=new DevicesAdapter(listaDevices,getActivity());
                     mrvDevices.setAdapter(madapater);
                 }
             }
