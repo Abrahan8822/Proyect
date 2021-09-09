@@ -16,9 +16,12 @@ import com.example.proyect.clases.Devices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -38,6 +41,7 @@ public class AddDeviceActivity extends AppCompatActivity {
     //recibir datos de btnactulizar (pruebas)
     private String nSerieUpdate;
     private TextView mtvSerie;
+    public int actividadbandera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +63,24 @@ public class AddDeviceActivity extends AppCompatActivity {
         nSerieUpdate=getIntent().getStringExtra("deviceId");
         mtvSerie=findViewById(R.id.tvidNserie);
         mtvSerie.setText(nSerieUpdate);
-        //
+        //si es bandera==2->actualizar obtener datos
+        if(actividadbandera==2)
+        {
+            mDatabaseRef.child("Devices").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists())
+                    {
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
         mbtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,18 +99,25 @@ public class AddDeviceActivity extends AppCompatActivity {
                 double corriente=d1.getCorriente();
                 String pass1=mPassd.getText().toString();
                 String passs2=mPassdR.getText().toString();
-                if(nSerie.equals("")||nombre.equals("")||pass1.equals("")||!passs2.equals(pass1))
+                if(actividadbandera==1)
                 {
-                    validacion();
+                    if(nSerie.equals("")||nombre.equals("")||pass1.equals("")||!passs2.equals(pass1))
+                    {
+                        validacion();
 
-                }else
-                {
-                    Devices d=new Devices(nSerie,nombre,uidUsuario,pass1,estado,corriente, ServerValue.TIMESTAMP,ServerValue.TIMESTAMP);
+                    }else
+                    {
+                        Devices d=new Devices(nSerie,nombre,uidUsuario,pass1,estado,corriente, ServerValue.TIMESTAMP,ServerValue.TIMESTAMP);
                         mDatabaseRef.child("Devices").child(d.getnSerie()).setValue(d);
                         Toast.makeText(AddDeviceActivity.this, "Agregado", Toast.LENGTH_SHORT).show();
                         LimpiarCajas();
 
+                    }
+                }else if(actividadbandera==2)
+                {
+
                 }
+
             }
         });
     }
