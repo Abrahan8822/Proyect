@@ -9,12 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.proyect.clases.Devices;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,6 +35,8 @@ public class AddDeviceActivity extends AppCompatActivity {
     private Button Delete;
     //Datos para agregar dispositivos
     private EditText mNserie,mNombre,mPassd,mPassdR;
+    private Spinner mEtcompani;
+    private EditText mEtprecio;
     //datos para guardar en firebase
     private FirebaseAuth mAuth ;
     private FirebaseDatabase mDatabase;
@@ -40,8 +45,8 @@ public class AddDeviceActivity extends AppCompatActivity {
     Devices d1=new Devices();
     //recibir datos de btnactulizar (pruebas)
     private String nSerieUpdate;
-    private TextView mtvSerie;
-    public int actividadbandera;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,8 @@ public class AddDeviceActivity extends AppCompatActivity {
         mbtnAdd=findViewById(R.id.btnAddregister);
         mNserie=findViewById(R.id.etaddsn);
         mNombre=findViewById(R.id.etaddNombre);
+        mEtcompani=findViewById(R.id.spinnerCompani);
+        mEtprecio=findViewById(R.id.etPrecio);
         mPassd=findViewById(R.id.etAddpass);
         mPassdR=findViewById(R.id.etaddpass2);
 
@@ -61,26 +68,9 @@ public class AddDeviceActivity extends AppCompatActivity {
 
         //recibir datos de btnactulizar
         nSerieUpdate=getIntent().getStringExtra("deviceId");
-        mtvSerie=findViewById(R.id.tvidNserie);
-        mtvSerie.setText(nSerieUpdate);
+
         //si es bandera==2->actualizar obtener datos
-        if(actividadbandera==2)
-        {
-            mDatabaseRef.child("Devices").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if(snapshot.exists())
-                    {
 
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }
         mbtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,27 +87,37 @@ public class AddDeviceActivity extends AppCompatActivity {
                 String nombre=mNombre.getText().toString();
                 int estado=d1.getEstado();
                 double corriente=d1.getCorriente();
+                String company=mEtcompani.getSelectedItem().toString();
+                double precio=Double.parseDouble(mEtprecio.getText().toString());
                 String pass1=mPassd.getText().toString();
                 String passs2=mPassdR.getText().toString();
-                if(actividadbandera==1)
+
+
+                if(nSerie.equals("")||nombre.equals("")||pass1.equals("")||!passs2.equals(pass1))
                 {
-                    if(nSerie.equals("")||nombre.equals("")||pass1.equals("")||!passs2.equals(pass1))
-                    {
-                        validacion();
+                    validacion();
 
-                    }else
-                    {
-                        Devices d=new Devices(nSerie,nombre,uidUsuario,pass1,estado,corriente, ServerValue.TIMESTAMP,ServerValue.TIMESTAMP);
-                        mDatabaseRef.child("Devices").child(d.getnSerie()).setValue(d);
-                        Toast.makeText(AddDeviceActivity.this, "Agregado", Toast.LENGTH_SHORT).show();
-                        LimpiarCajas();
-
-                    }
-                }else if(actividadbandera==2)
+                }else
                 {
+                    Devices d=new Devices(nSerie,nombre,uidUsuario,pass1,estado,corriente,company,precio, ServerValue.TIMESTAMP,ServerValue.TIMESTAMP);
+                    mDatabaseRef.child("Devices").child(d.getnSerie()).setValue(d).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task2) {
+                            if(task2.isSuccessful())
+                            {
+                                LimpiarCajas();
+                                Toast.makeText(AddDeviceActivity.this, "Agregado", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(AddDeviceActivity.this,HomeActivity.class));
+                                finish();
+                            }
+                            else
+                            {
+                                    Toast.makeText(AddDeviceActivity.this, "No se pudieron crear los datos correctamente", Toast.LENGTH_SHORT).show();
+                            }
 
+                            }
+                        });
                 }
-
             }
         });
     }
@@ -148,42 +148,5 @@ public class AddDeviceActivity extends AppCompatActivity {
             mPassdR.setError("La contraseña debe coincidir");
         }
     }
-    private void actulizarDatos()
-    {
-        Map<String,Object> deviceMap=new HashMap<>();
-        deviceMap.put("fechaAct",new Date().getTime());
-        deviceMap.put("nombre",mNombre.getText().toString());
-        deviceMap.put("pass",mPassd);
-        mDatabaseRef.child("Devices").child("nSerie").child(nSerieUpdate).updateChildren(deviceMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(AddDeviceActivity.this, "Los datos se actualizaron correctamente", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(AddDeviceActivity.this, "Hubo un error al actualizar los datos", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    private void EliminarDevice()
-    {
-        Map<String,Object> deviceMap=new HashMap<>();
-        deviceMap.put("estado",0);
-        deviceMap.put("fechaAct",new Date().getTime());
-        deviceMap.put("nombre","sn");
-        deviceMap.put("pass","password8822");
-        deviceMap.put("uidUsuario","sn");
-        mDatabaseRef.child("Devices").child("nSerie").child(nSerieUpdate).updateChildren(deviceMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                Toast.makeText(AddDeviceActivity.this, "Dispositivo eliminado", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(AddDeviceActivity.this, "Hubo un error al eliminar el dispositivo", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+
 }

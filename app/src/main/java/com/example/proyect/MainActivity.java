@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,16 +29,13 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEtnombre;
     private EditText mEtcorreo;
     private EditText mEtpass;
-    private Spinner mEtcompani;
-    private EditText mEtprecio;
+
     private Button mbtnRegister;
     private Button mbtnsendToLogin;
     //variable de los datos a registar
     private String nombre="";
     private String correo="";
     private String pass="";
-    private String company="";
-    private double precio=0;
     FirebaseAuth mAth;
     DatabaseReference mdataBase;
 
@@ -49,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
         mEtnombre=findViewById(R.id.etNombre);
         mEtcorreo=findViewById(R.id.etCorreo);
         mEtpass=findViewById(R.id.etpass);
-        mEtcompani=findViewById(R.id.spinnerCompani);
-        mEtprecio=findViewById(R.id.etPrecio);
+
         mbtnRegister=findViewById(R.id.btnregister);
         mbtnsendToLogin=findViewById(R.id.btnlsentTologin);
         mdataBase= FirebaseDatabase.getInstance().getReference();
@@ -61,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 nombre=mEtnombre.getText().toString();
                 correo=mEtcorreo.getText().toString();
                 pass=mEtpass.getText().toString();
-                company=mEtcompani.getSelectedItem().toString();
-                precio=Double.parseDouble(mEtprecio.getText().toString());
+
 
                 if(!nombre.isEmpty()&&!correo.isEmpty()&&!pass.isEmpty())
                 {
@@ -99,8 +95,9 @@ public class MainActivity extends AppCompatActivity {
                     map.put("nombre",nombre);
                     map.put("correo",correo);
                     map.put("password",pass);
-                    map.put("compani",company);
-                    map.put("preciokw",precio);
+                    map.put("estado",1);
+                    map.put("fechaRegistro", ServerValue.TIMESTAMP);
+                    map.put("fechaAct", ServerValue.TIMESTAMP);
                     String id=mAth.getCurrentUser().getUid();
                     mdataBase.child("Usuarios").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

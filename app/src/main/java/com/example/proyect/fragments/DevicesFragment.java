@@ -73,7 +73,6 @@ public class DevicesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 AddDeviceActivity activity=new AddDeviceActivity();
-                activity.actividadbandera=1;
                 Intent intent = new Intent(getActivity(), AddDeviceActivity.class);
                 startActivity(intent);
             }

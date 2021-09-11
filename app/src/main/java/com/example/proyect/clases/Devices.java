@@ -12,6 +12,25 @@ public class Devices {
     private String pass;
     private int estado=1;
     private double corriente=0;
+    private String compani;
+    private Double preciokw;
+
+    public String getCompani() {
+        return compani;
+    }
+
+    public void setCompani(String compani) {
+        this.compani = compani;
+    }
+
+    public Double getPreciokw() {
+        return preciokw;
+    }
+
+    public void setPreciokw(Double preciokw) {
+        this.preciokw = preciokw;
+    }
+
     private Map fechaRegistro;
     private Map fechaAct;
 
@@ -50,13 +69,15 @@ public class Devices {
         this.pass = pass;
     }
 //Este constructor para set
-    public Devices(String nSerie, String nombre, String uidUsuario, String pass, int estado, double corriente, Map fechaRegistro, Map fechaAct) {
+    public Devices(String nSerie, String nombre, String uidUsuario, String pass, int estado, double corriente,String compani,double preciokw, Map fechaRegistro, Map fechaAct) {
         this.nSerie = nSerie;
         this.nombre = nombre;
         this.uidUsuario = uidUsuario;
         this.pass = pass;
         this.estado = estado;
         this.corriente = corriente;
+        this.compani=compani;
+        this.preciokw=preciokw;
         this.fechaRegistro = fechaRegistro;
         this.fechaAct = fechaAct;
     }

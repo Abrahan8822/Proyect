@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddDeviceActivity">
+    tools:context=".UpdateDeviceActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/imggtnback"
+            android:id="@+id/auimbtntnback"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="1dp"
@@ -27,40 +27,37 @@
             android:layout_width="260dp"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Crear dispositivo"
+            android:text="Actualizar dispositivo"
             android:textColor="@color/white"
             android:textSize="24dp" />
 
         <ImageButton
-            android:id="@+id/btnAddregister"
+            android:id="@+id/aubtnUpdate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/azulMarino"
-            android:text="REGISTRAR EQUIPO"
             android:textColor="@color/white"
             android:src="@drawable/ic_save" />
     </LinearLayout>
 
-
-
+    <TextView
+        android:id="@+id/autvsn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="SN dispositivo"
+        android:layout_marginLeft="10dp"
+        android:textSize="30dp"/>
 
     <EditText
-        android:id="@+id/etaddNombre"
+        android:id="@+id/auetNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="Nombre"
         android:minHeight="48dp" />
-    <EditText
-        android:id="@+id/etaddsn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:hint="S/N Numero de serie"
-        android:minHeight="48dp" />
-
     <Spinner
-        android:id="@+id/spinnerCompani"
+        android:id="@+id/auspinnerCompani"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -68,40 +65,59 @@
         android:entries="@array/companias"
         android:padding="20dp" />
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal">
         <EditText
-            android:id="@+id/etPrecio"
+            android:id="@+id/auetPrecio"
             android:layout_width="100dp"
             android:layout_height="80dp"
             android:text="0.822" />
 
         <Button
+            android:id="@+id/aubtnPrecio"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@color/amarilloClaro"
             android:text="Cambiar precio" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:text="Modificar contraseña"/>
+        <ImageButton
+            android:id="@+id/aubtnUppass"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_more" />
+    </LinearLayout>
+
+
     <EditText
-        android:id="@+id/etAddpass"
+        android:id="@+id/auetuppass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="Contraseña"
+        android:hint="Contraseña antigua"
         android:inputType="textPassword"
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/etaddpass2"
+        android:id="@+id/auetuppass2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="Repetir contraseña"
+        android:hint="Contraseña nueva"
         android:inputType="textPassword"
         android:minHeight="48dp" />
 
@@ -110,6 +126,15 @@
         android:layout_height="match_parent"
         android:gravity="bottom"
         android:orientation="vertical">
+
+        <Button
+            android:id="@+id/aubtnDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@color/rojoExtremo"
+            android:text="Eliminar"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 

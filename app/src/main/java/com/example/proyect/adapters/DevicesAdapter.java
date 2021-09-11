@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.proyect.AddDeviceActivity;
 import com.example.proyect.R;
+import com.example.proyect.UpdateDeviceActivity;
 import com.example.proyect.clases.Devices;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.core.SnapshotHolder;
@@ -42,7 +43,7 @@ public class DevicesAdapter extends RecyclerView.Adapter<DevicesAdapter.DevicesV
         holder.mbtnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(activity, AddDeviceActivity.class);
+                Intent intent=new Intent(activity, UpdateDeviceActivity.class);
                 intent.putExtra("deviceId",idNserie);
                 activity.startActivity(intent);
             }

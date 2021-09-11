@@ -1,7 +1,11 @@
 package com.example.proyect.clases;
 
+import java.util.Map;
+
 public class Usuarios {
     public String nombre,correo,compani;
+    int estado;
+    Map fechaAct,fechaRegistro;
 
     public Usuarios()
     {
