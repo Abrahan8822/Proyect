@@ -1,5 +1,7 @@
 package com.example.proyect;
 
+import static java.lang.Boolean.FALSE;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +34,8 @@ import java.util.Map;
 
 public class AddDeviceActivity extends AppCompatActivity {
     private ImageButton mbtnBack,mbtnAdd;
-    private Button Delete;
+    private Button mbtnCambiarPrecio;
+    private TextView matencion;
     //Datos para agregar dispositivos
     private EditText mNserie,mNombre,mPassd,mPassdR;
     private Spinner mEtcompani;
@@ -44,7 +47,7 @@ public class AddDeviceActivity extends AppCompatActivity {
     //recuperando datos generales del constructor
     Devices d1=new Devices();
     //recibir datos de btnactulizar (pruebas)
-    private String nSerieUpdate;
+
 
 
 
@@ -58,6 +61,8 @@ public class AddDeviceActivity extends AppCompatActivity {
         mNombre=findViewById(R.id.etaddNombre);
         mEtcompani=findViewById(R.id.spinnerCompani);
         mEtprecio=findViewById(R.id.etPrecio);
+        mbtnCambiarPrecio=findViewById(R.id.aaddbtnPrecio);
+        matencion=findViewById(R.id.aaddtvMensajeAtencion);
         mPassd=findViewById(R.id.etAddpass);
         mPassdR=findViewById(R.id.etaddpass2);
 
@@ -66,11 +71,6 @@ public class AddDeviceActivity extends AppCompatActivity {
         mDatabase=FirebaseDatabase.getInstance();
         mDatabaseRef=FirebaseDatabase.getInstance().getReference();
 
-        //recibir datos de btnactulizar
-        nSerieUpdate=getIntent().getStringExtra("deviceId");
-
-        //si es bandera==2->actualizar obtener datos
-
         mbtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +78,24 @@ public class AddDeviceActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        mbtnCambiarPrecio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId())
+                {
+                    case R.id.aaddbtnPrecio:
+                        if(mEtprecio.isEnabled()==FALSE)
+                        {
+                            mEtprecio.setEnabled(true);
+                            matencion.setVisibility(View.VISIBLE);
+                        }else
+                        {
+                            mEtprecio.setEnabled(false);
+                            matencion.setVisibility(View.GONE);
+                        }
+                }
+            }
+        });
         mbtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -47,26 +47,33 @@ public class Devices {
     public Devices() {
     }
     //Este constructor para get
-    public Devices(String nSerie, String nombre, String uidUsuario, String pass, int estado, double corriente) {
+    /*public Devices(String nSerie, String nombre, String uidUsuario, String pass, int estado, double corriente) {
         this.nSerie = nSerie;
         this.nombre = nombre;
         this.uidUsuario = uidUsuario;
         this.pass = pass;
         this.estado = estado;
         this.corriente = corriente;
+    }*/
+    //get updat device
+    public Devices(String compani, String nSerie, String nombre, double preciokw) {
+        this.compani=compani;
+        this.nSerie = nSerie;
+        this.nombre = nombre;
+        this.preciokw=preciokw;
+
     }
 //contructor obtener lista
     public Devices(String nSerie, String nombre) {
         this.nSerie = nSerie;
         this.nombre = nombre;
     }
-    //constructor update
-    public Devices(int estado,Map fechaAct,String nSerie, String nombre,String pass) {
-        this.estado = estado;
+    //constructor set updateNormal
+    public Devices(String compani,Map fechaAct, String nombre,double preciokw) {
+        this.compani=compani;
         this.fechaAct = fechaAct;
-        this.nSerie = nSerie;
         this.nombre = nombre;
-        this.pass = pass;
+        this.preciokw = preciokw;
     }
 //Este constructor para set
     public Devices(String nSerie, String nombre, String uidUsuario, String pass, int estado, double corriente,String compani,double preciokw, Map fechaRegistro, Map fechaAct) {
