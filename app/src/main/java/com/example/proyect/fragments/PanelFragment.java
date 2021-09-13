@@ -1,5 +1,6 @@
 package com.example.proyect.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,58 +10,51 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.proyect.R;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PanelFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class PanelFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public PanelFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PanelFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PanelFragment newInstance(String param1, String param2) {
-        PanelFragment fragment = new PanelFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_panel, container, false);
+        View v=inflater.inflate(R.layout.fragment_panel, container, false);
+        GraphView graph = (GraphView)v.findViewById(R.id.graph);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
+                new DataPoint(0,  60),
+                new DataPoint(1,  50),
+                new DataPoint(2,  70),
+                new DataPoint(3,  40),
+                new DataPoint(4,  40),
+                new DataPoint(5,  60),
+                new DataPoint(6,  80),
+                new DataPoint(7,  100),
+                new DataPoint(8,  80),
+                new DataPoint(9,  80),
+                new DataPoint(10, 80),
+                new DataPoint(11, 80),
+                new DataPoint(12, 80),
+                new DataPoint(13, 80),
+                new DataPoint(14, 80),
+                new DataPoint(15, 250),
+                new DataPoint(16, 250),
+                new DataPoint(17, 100),
+                new DataPoint(18, 20),
+                new DataPoint(19, 20),
+                new DataPoint(20, 20),
+                new DataPoint(21, 20),
+                new DataPoint(22, 20),
+                new DataPoint(23, 20)
+
+        });
+        graph.addSeries(series);
+        series.setColor(Color.WHITE);
+        return v;
     }
 }
