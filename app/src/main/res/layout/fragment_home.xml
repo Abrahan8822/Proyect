@@ -19,8 +19,7 @@
                 android:id="@+id/spfhDevices"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                style="@android:style/Widget.Holo.Light.Spinner"/>
+                android:layout_margin="20dp"/>
             <TextView
                 android:id="@+id/tvfhValue"
                 android:layout_width="match_parent"

@@ -138,7 +138,7 @@ public class HomeFragment extends Fragment {
                         String nombre=ds.child("nombre").getValue().toString();
                         devices.add(new Devices(uidSerie,nombre));
                     }
-                    ArrayAdapter<Devices> arrayAdapter=new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line,devices);
+                    ArrayAdapter<Devices> arrayAdapter=new ArrayAdapter<>(getActivity(), R.layout.spinner_item,devices);
                     mspDevice.setAdapter(arrayAdapter);
                     mspDevice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
@@ -148,7 +148,7 @@ public class HomeFragment extends Fragment {
                             {
                                 serieSeleccionado=devices.get(i).getnSerie();
                                 nombreSeleccionado=devices.get(i).getNombre();
-                                
+
                                 //mdataRef.removeEventListener(eventListener);
                                 loadCorriente(serieSeleccionado);
                             }else
