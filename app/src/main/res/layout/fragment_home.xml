@@ -4,41 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/plomoClaro"
+    android:background="@color/white"
     tools:context=".fragments.HomeFragment">
 
+
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tvfhDevices"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Seleccionar Dispositivo"
-        android:textSize="20sp"
-        android:textAlignment="center"/>
-    <Spinner
-        android:id="@+id/spfhDevices"
+        android:orientation="vertical"
+        android:background="@color/plomoClaro">
+            <Spinner
+                android:id="@+id/spfhDevices"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                style="@android:style/Widget.Holo.Light.Spinner"/>
+            <TextView
+                android:id="@+id/tvfhValue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Valor"
+                android:textColor="@color/white"
+                android:textSize="60dp" />
+            <TextView
+                android:id="@+id/tvfhWatts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Watts"
+                android:textColor="@color/amarilloClaro"
+                android:textSize="45dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/fptvPrecio"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:text="Precio"
+        android:textStyle="bold"
+        android:textColor="@color/plomo"
+        android:textSize="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"/>
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/fpgraph"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"/>
-
-
-    <TextView
-        android:id="@+id/tvfhValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="80dp"
-        android:textColor="@color/white"
-        android:text="Valor"/>
-    <TextView
-        android:id="@+id/tvfhWatts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="80dp"
-        android:textColor="@color/amarilloClaro"
-        android:text="Watts"/>
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="10dp"/>
 
 </LinearLayout>

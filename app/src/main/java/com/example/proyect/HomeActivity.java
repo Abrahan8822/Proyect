@@ -26,9 +26,9 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigation=findViewById(R.id.bottom_navigation);
         //añadir menu item
         bottomNavigation.add(new MeowBottomNavigation.Model(1,R.drawable.ic_home));
-        bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_panel));
-        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_devices));
-        bottomNavigation.add(new MeowBottomNavigation.Model(4,R.drawable.ic_profile));
+        //bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_panel));
+        bottomNavigation.add(new MeowBottomNavigation.Model(2,R.drawable.ic_devices));
+        bottomNavigation.add(new MeowBottomNavigation.Model(3,R.drawable.ic_profile));
         bottomNavigation.setOnShowListener(new MeowBottomNavigation.ShowListener() {
             @Override
             public void onShowItem(MeowBottomNavigation.Model item) {
@@ -39,13 +39,13 @@ public class HomeActivity extends AppCompatActivity {
                     case 1:
                         fragment = new HomeFragment();
                         break;
-                    case 2:
+                    /*case 2:
                         fragment = new PanelFragment();
-                        break;
-                    case 3:
+                        break;*/
+                    case 2:
                         fragment = new DevicesFragment();
                         break;
-                    case 4:
+                    case 3:
                         fragment = new ProfileFragment();
                         break;
                 }

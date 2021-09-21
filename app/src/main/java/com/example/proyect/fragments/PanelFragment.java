@@ -43,17 +43,19 @@ import java.util.Map;
 
 public class PanelFragment extends Fragment {
     private TextView mprecio;
-    private DatabaseReference mdatabase;
-    private FirebaseAuth mAuth;
     LineGraphSeries<DataPoint> series1;
     private double x,y,precio;
+    private DatabaseReference mdatabase;
+    private FirebaseAuth mAuth;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v=inflater.inflate(R.layout.fragment_panel, container, false);
-        mdatabase=FirebaseDatabase.getInstance().getReference("Consumos");
         mprecio=v.findViewById(R.id.fptvPrecio);
+        mdatabase=FirebaseDatabase.getInstance().getReference("Consumos");
+
 
         x=0;
         precio=0;
