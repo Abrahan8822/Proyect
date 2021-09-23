@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/plomoClaro"
     tools:context=".fragments.HomeFragment">
 
 
@@ -37,19 +37,66 @@
                 android:textColor="@color/amarilloClaro"
                 android:textSize="45dp" />
     </LinearLayout>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="60dp"
+       android:layout_gravity="center">
+       <TextView
+           android:id="@+id/fptvPrecio"
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:text="Precio"
+           android:textStyle="bold"
+           android:textColor="@color/plomo"
+           android:textSize="40dp"
+           android:layout_marginLeft="20dp"/>
+   </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/plomoClaro">
 
-    <TextView
-        android:id="@+id/fptvPrecio"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:text="Precio"
-        android:textStyle="bold"
-        android:textColor="@color/plomo"
-        android:textSize="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="20dp"/>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/fhrbtnD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D"
+            android:padding="16dp"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_selector"
+            android:textColor="@drawable/text_color"
+            android:elevation="4dp"
+            android:layout_marginLeft="50dp"
+            android:checked="true"/>
+        <RadioButton
+            android:id="@+id/fhrbtnS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S"
+            android:padding="16dp"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_selector"
+            android:textColor="@drawable/text_color"
+            android:elevation="4dp"
+            android:layout_marginLeft="100dp"/>
+        <RadioButton
+            android:id="@+id/fhrbtnM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="M"
+            android:padding="16dp"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_selector"
+            android:textColor="@drawable/text_color"
+            android:elevation="4dp"
+            android:layout_marginLeft="90dp"/>
 
+    </RadioGroup>
+</LinearLayout>
     <com.jjoe64.graphview.GraphView
         android:id="@+id/fpgraph"
         android:layout_width="match_parent"

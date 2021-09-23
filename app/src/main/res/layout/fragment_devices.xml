@@ -18,13 +18,15 @@
         android:layout_height="wrap_content"
         android:textSize="24dp"
         android:text="Mis dispositivos"
+        android:textColor="@color/white"
+
         android:layout_margin="15dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingbtnadd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+
         android:layout_marginLeft="100dp"
         android:clickable="true"
         android:backgroundTint="@color/azul"

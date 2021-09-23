@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/plomoClaro">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +36,7 @@
                 android:id="@+id/tvlvNserie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fecha"
+                android:text="nSerie"
                 android:layout_marginTop="5dp"
                 android:textSize="17sp"/>
 
@@ -57,7 +58,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/azul"
+                    android:background="@color/amarilloClaro"
                     android:layout_marginTop="10dp"/>
 
 </LinearLayout>
